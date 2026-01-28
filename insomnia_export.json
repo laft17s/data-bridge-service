@@ -1,0 +1,159 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "__export_date": "2026-01-27T00:00:00.000Z",
+    "__export_source": "insomnia.desktop.app:v2023.5.8",
+    "resources": [
+        {
+            "_id": "wrk_data_bridge",
+            "_type": "workspace",
+            "parentId": null,
+            "modified": 1700000000000,
+            "created": 1700000000000,
+            "name": "Data Bridge Service",
+            "description": "Collection for Data Bridge Service API testing",
+            "scope": "collection"
+        },
+        {
+            "_id": "env_data_bridge_base",
+            "_type": "environment",
+            "parentId": "wrk_data_bridge",
+            "modified": 1700000000000,
+            "created": 1700000000000,
+            "name": "Base Environment",
+            "data": {
+                "base_url": "http://localhost:3120"
+            },
+            "dataPropertyOrder": {
+                "&base_url": "base_url"
+            },
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1700000000000
+        },
+        {
+            "_id": "req_rest_json_xml",
+            "_type": "request",
+            "parentId": "wrk_data_bridge",
+            "modified": 1700000000000,
+            "created": 1700000000000,
+            "url": "{{ base_url }}/transform",
+            "name": "REST: JSON -> XML",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"uuid\": \"123e4567-e89b-12d3-a456-426614174000\",\n\t\"service\": \"insomnia-test\",\n\t\"transport\": \"rest\",\n\t\"from\": \"JSON\",\n\t\"to\": \"XML\",\n\t\"content\": {\n\t\t\"root\": {\n\t\t\t\"message\": \"Hello from Insomnia\",\n\t\t\t\"timestamp\": 123456789\n\t\t}\n\t}\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1700000000000,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global"
+        },
+        {
+            "_id": "req_rest_json_csv",
+            "_type": "request",
+            "parentId": "wrk_data_bridge",
+            "modified": 1700000000000,
+            "created": 1700000000000,
+            "url": "{{ base_url }}/transform",
+            "name": "REST: JSON -> CSV",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"uuid\": \"123e4567-e89b-12d3-a456-426614174001\",\n\t\"service\": \"insomnia-test\",\n\t\"transport\": \"rest\",\n\t\"from\": \"JSON\",\n\t\"to\": \"CSV\",\n\t\"content\": [\n\t\t{ \"id\": 1, \"name\": \"Alice\", \"role\": \"Admin\" },\n\t\t{ \"id\": 2, \"name\": \"Bob\", \"role\": \"User\" }\n\t]\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1600000000000,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global"
+        },
+        {
+            "_id": "req_gql_health",
+            "_type": "request",
+            "parentId": "wrk_data_bridge",
+            "modified": 1700000000000,
+            "created": 1700000000000,
+            "url": "{{ base_url }}/graphql",
+            "name": "GraphQL: Health Check",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/graphql",
+                "text": "{\"query\":\"query {\\n  healthCheck\\n}\"}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1500000000000,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global"
+        },
+        {
+            "_id": "req_gql_transform",
+            "_type": "request",
+            "parentId": "wrk_data_bridge",
+            "modified": 1700000000000,
+            "created": 1700000000000,
+            "url": "{{ base_url }}/graphql",
+            "name": "GraphQL: Transform Mutation",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/graphql",
+                "text": "{\"query\":\"mutation Transform($uuid: String!, $service: String!, $transport: TransportType!, $from: DataFormat!, $to: DataFormat!, $content: JSON!) {\\n  transform(uuid: $uuid, service: $service, transport: $transport, from: $from, to: $to, content: $content) {\\n    success\\n    data\\n    error\\n  }\\n}\",\"variables\":{\n  \"uuid\": \"123e4567-e89b-12d3-a456-426614174002\",\n  \"service\": \"insomnia-graphql\",\n  \"transport\": \"GRAPHQL\",\n  \"from\": \"JSON\",\n  \"to\": \"XML\",\n  \"content\": { \"root\": { \"item\": \"value_via_graphql\" } }\n}}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1400000000000,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global"
+        }
+    ]
+}

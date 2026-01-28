@@ -12,71 +12,71 @@
 
 # Data Bridge Service
 
-**Data Bridge Service** es una solución robusta desarrollada con **NestJS** diseñada para transformar datos entre múltiples formatos y protocolos de transporte. Utiliza una **Arquitectura Hexagonal** y patrones de diseño avanzados para garantizar escalabilidad, mantenibilidad y un alto rendimiento.
+**Data Bridge Service** is a robust solution developed with **NestJS** designed to transform data between multiple formats and transport protocols. It utilizes **Hexagonal Architecture** and advanced design patterns to ensure scalability, maintainability, and high performance.
 
-## 📋 Tabla de Contenidos
-- [Formatos Soportados](#-formatos-soportados)
-- [Protocolos de Transporte](#-protocolos-de-transporte)
-- [Guía de Instalación](#-guía-de-instalación)
-- [Arquitectura del Proyecto](#-arquitectura-del-proyecto)
-- [Patrones de Diseño](#-patrones-de-diseño)
-- [Despliegue con Docker](#-despliegue-con-docker)
-- [Pruebas](#-pruebas)
-- [Contribución](#-contribución)
+## 📋 Table of Contents
+- [Supported Formats](#-supported-formats)
+- [Transport Protocols](#-transport-protocols)
+- [Installation Guide](#-installation-guide)
+- [Project Architecture](#-project-architecture)
+- [Design Patterns](#-design-patterns)
+- [Docker Deployment](#-docker-deployment)
+- [Testing](#-testing)
+- [Contribution](#-contribution)
 
-## 🔄 Formatos Soportados
+## 🔄 Supported Formats
 
-El servicio permite la transformación bidireccional entre los siguientes formatos:
+The service allows bidirectional transformation between the following formats:
 - **JSON**
 - **XML**
 - **CSV**
 - **TOON** (Token-Oriented Object Notation)
-- **SQL** (Próximamente)
-- **Excel** (Próximamente)
+- **SQL** (Coming Soon)
+- **Excel** (Coming Soon)
 
-## 🚀 Protocolos de Transporte
+## 🚀 Transport Protocols
 
-Puedes interactuar con el servicio a través de:
+You can interact with the service through:
 - **REST API**: Endpoint `POST /transform`.
-- **GraphQL**: Mutación `transform`.
-- **Kafka**: (En desarrollo).
-- **gRPC**: (En desarrollo).
+- **GraphQL**: Mutation `transform`.
+- **Kafka**: (In development).
+- **gRPC**: (In development).
 
-## 🚀 Guía de Instalación
+## 🚀 Installation Guide
 
-### 1. Requisitos Previos
-- **Node.js**: v18 o superior.
-- **pnpm**: Instalador de paquetes.
-- **Docker**: Para despliegue en contenedores.
+### 1. Prerequisites
+- **Node.js**: v18 or higher.
+- **pnpm**: Package manager.
+- **Docker**: For containerized deployment.
 
-### 2. Instalación Local
+### 2. Local Installation
 ```bash
-# Clonar el repositorio
-git clone <url-del-repo>
+# Clone the repository
+git clone <repo-url>
 cd data-bridge-service
 
-# Instalar dependencias
+# Install dependencies
 pnpm install
 
-# Configurar variables de entorno
-cp .env.example .env # Ajusta el PORT a 3120
+# Configure environment variables
+cp .env.example .env # Set PORT to 3120
 ```
 
-### 3. Ejecución
+### 3. Execution
 ```bash
-# Modo desarrollo
+# Development mode
 pnpm run start:dev
 
-# Compilar y ejecutar
+# Build and run
 pnpm run build
 pnpm run start:prod
 ```
 
-## 🏗 Arquitectura del Proyecto
+## 🏗 Project Architecture
 
-El proyecto sigue los principios de **Arquitectura Hexagonal (Clean Architecture)** y el principio **"Tell, Don't Ask"**.
+The project follows **Hexagonal Architecture (Clean Architecture)** principles and the **"Tell, Don't Ask"** principle.
 
-### Diagrama de Arquitectura
+### Architecture Diagram
 
 ```mermaid
 graph TD
@@ -100,35 +100,35 @@ graph TD
     end
 ```
 
-## 🛠 Patrones de Diseño
+## 🛠 Design Patterns
 
-Para cumplir con los requerimientos de diseño, se han implementado los siguientes patrones:
-- **Strategy**: Para manejar diferentes formatos de datos y protocolos de transporte.
-- **Factory**: Para instanciar la estrategia correcta dinámicamente.
-- **Constants**: Centralización de formatos y tipos de transporte.
-- **Builder**: Para la construcción de resultados de transformación complejos.
-- **Translator**: Para el mapeo entre DTOs de infraestructura y Entidades de dominio.
+To meet the design requirements, the following patterns have been implemented:
+- **Strategy**: To handle different data formats and transport protocols.
+- **Factory**: To instantiate the correct strategy dynamically.
+- **Constants**: Centralization of formats and transport types.
+- **Builder**: For constructing complex transformation results.
+- **Translator**: For mapping between infrastructure DTOs and domain Entities.
 
-## 🐳 Despliegue con Docker
+## 🐳 Docker Deployment
 
 ### Dockerfile
-El proyecto incluye un `Dockerfile` optimizado para producción.
+The project includes a `Dockerfile` optimized for production.
 
 ### Docker Compose / Swarm
 ```bash
-# Levantar con Docker Compose
+# Spin up with Docker Compose
 docker-compose up -d
 ```
 
-## 🧪 Pruebas
+## 🧪 Testing
 
-Para facilitar las pruebas de los endpoints REST y GraphQL, hemos incluido un archivo de exportación de Insomnia.
+To facilitate testing of REST and GraphQL endpoints, we have included an Insomnia export file.
 
-1.  Descarga e instala [Insomnia](https://insomnia.rest/).
-2.  Importa el archivo `insomnia_export.json` ubicado en la raíz del proyecto.
-3.  Verás una colección "Data Bridge Service" con ejemplos listos para usar.
+1.  Download and install [Insomnia](https://insomnia.rest/).
+2.  Import the `insomnia_export.json` file located at the project root.
+3.  You will see a "Data Bridge Service" collection with ready-to-use examples.
 
-### Ejemplos Manuales
+### Manual Examples
 
 #### 1. REST API (JSON -> XML)
 **Endpoint:** `POST http://localhost:3120/transform`
@@ -142,7 +142,7 @@ Para facilitar las pruebas de los endpoints REST y GraphQL, hemos incluido un ar
   "to": "XML",
   "content": {
     "root": {
-      "message": "Hola Mundo",
+      "message": "Hello World",
       "date": "2024-01-01"
     }
   }
@@ -160,7 +160,7 @@ mutation {
     transport: GRAPHQL,
     from: JSON,
     to: XML,
-    content: { root: { message: "Hola desde GraphQL" } }
+    content: { root: { message: "Hello from GraphQL" } }
   ) {
     success
     data
@@ -189,7 +189,7 @@ mutation {
 }
 ```
 
-**Respuesta esperada (TOON):**
+**Expected response (TOON):**
 ```
 user
   name: Alice
@@ -274,12 +274,12 @@ mutation {
 }
 ```
 
-## 🤝 Contribución
+## 🤝 Contribution
 
-¡Las contribuciones son bienvenidas! Para colaborar:
-1. Implementa nuevas estrategias en `src/infrastructure/converters/strategies`.
-2. Registra la estrategia en el `TransformationModule`.
-3. Asegúrate de seguir el principio **Tell, Don't Ask**.
+Contributions are welcome! To collaborate:
+1. Implement new strategies in `src/infrastructure/converters/strategies`.
+2. Register the strategy in `TransformationModule`.
+3. Ensure you follow the **Tell, Don't Ask** principle.
 
 ## 👥 Autor
 
